@@ -1,3 +1,9 @@
+//------------------------------------------------------------------------------------------
+//
+//  recognizer/SampleGestures.h
+//
+//  Created by Tong Tung Giang in 2015
+//
 #ifndef SAMPLEGESTURE_H
 #define SAMPLEGESTURE_H
 
