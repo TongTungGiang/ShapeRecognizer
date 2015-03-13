@@ -1,0 +1,79 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\recognizer">
+      <UniqueIdentifier>{47a1ecb1-e2f8-4cd9-89ea-26aaa40a35c7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\recognizer">
+      <UniqueIdentifier>{cdfb90af-9c2f-4df8-87c5-29d9b9f48222}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="recognizer\Point.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recognizer\Path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recognizer\Rectangle.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="recognizer\Recognizer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="recognizer\Point.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recognizer\Path.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recognizer\Rectangle.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recognizer\Recognizer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="recognizer\SampleGestures.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Debug\vc120.pdb" />
+    <None Include="Debug\ShapeRecognizer.tlog\cl.command.1.tlog" />
+    <None Include="Debug\ShapeRecognizer.tlog\CL.read.1.tlog" />
+    <None Include="Debug\ShapeRecognizer.tlog\CL.write.1.tlog" />
+    <None Include="Debug\ShapeRecognizer.tlog\ShapeRecognizer.lastbuildstate" />
+    <None Include="Debug\ShapeRecognizer.tlog\unsuccessfulbuild" />
+    <None Include="Debug\vc120.idb" />
+    <None Include="Debug\ShapeRecognizer.pdb" />
+    <None Include="Debug\ShapeRecognizer.ilk" />
+    <None Include="Debug\ShapeRecognizer.exe" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="Debug\ShapeRecognizer.log" />
+  </ItemGroup>
+  <ItemGroup>
+    <Object Include="Debug\main.obj" />
+    <Object Include="Debug\Path.obj" />
+    <Object Include="Debug\Point.obj" />
+    <Object Include="Debug\Recognizer.obj" />
+    <Object Include="Debug\Rectangle.obj" />
+  </ItemGroup>
+</Project>
