@@ -11,6 +11,30 @@
 #define min(a, b) (a<b)?a:b
 
 //------------------------------------------------------------------------------------------
+// Class' constructor
+//
+recognizer::Recognizer::Recognizer()
+{
+	loadTemplates();
+}
+
+//------------------------------------------------------------------------------------------
+// Returns the candidate attribute of the class
+//
+recognizer::Path recognizer::Recognizer::getCandidate()
+{
+	return candidate;
+}
+
+//------------------------------------------------------------------------------------------
+// Sets the candidate
+//
+void recognizer::Recognizer::setCandidate(recognizer::Path _candidate)
+{
+	candidate = _candidate;
+}
+
+//------------------------------------------------------------------------------------------
 // Calculats the path-distance between two paths
 //
 double recognizer::Recognizer::pathDistance(Path path1, Path path2)

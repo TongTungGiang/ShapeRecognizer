@@ -39,6 +39,11 @@ namespace recognizer
 
 	public:
 
+		Recognizer();
+
+		Path getCandidate();
+		void setCandidate(Path _candidate);
+
 		void addTemplate(Path temp);
 		void loadTemplates();
 

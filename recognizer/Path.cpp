@@ -103,9 +103,9 @@ recognizer::Rectangle recognizer::Path::calculateBoundingBox(Path points)
 //------------------------------------------------------------------------------------------
 // Adds a new point to the path
 //
-void recognizer::Path::append(Path points, Point newPoint)
+void recognizer::Path::append(Point newPoint)
 {
-	points.points.push_back(newPoint);
+	points.push_back(newPoint);
 }
 
 //------------------------------------------------------------------------------------------
@@ -131,7 +131,7 @@ recognizer::Path recognizer::Path::rotateBy(Path points, double angle)
 			(tmp.x - centroid.x) * sine +
 			(tmp.y - centroid.y) * cosine +
 			centroid.y;
-		newPoints.append(newPoints, Point((int) qx, (int) qy));
+		newPoints.append(Point((int) qx, (int) qy));
 	}
 
 	return newPoints;
@@ -169,7 +169,7 @@ recognizer::Path recognizer::Path::scaleToSquare(Path points, int size)
 		int y = p.y * (size / box.getHeight());
 		Point q(x, y);
 
-		newPoints.append(newPoints, q);
+		newPoints.append(q);
 	}
 
 	return newPoints;
@@ -189,7 +189,7 @@ recognizer::Path recognizer::Path::translateToOrigin(Path points)
 	{
 		Point p = points.getPoints().at(i);
 		Point q(p.x - centroid.x, p.y - centroid.y);
-		newPoints.append(newPoints, q);
+		newPoints.append(q);
 	}
 
 	return newPoints;
@@ -206,29 +206,29 @@ recognizer::Path recognizer::Path::resample(Path points, int n)
 
 	// initializes the new path called newPoints which is the result of this function
 	Path newPoints;
-	newPoints.append(newPoints, points.getPoints().at(0));
+	newPoints.append(points.getPoints().front());
 
 	for (int i = 1; i < pointNumber; i++)
 	{
-		Point current = points.getPoints().at(i);
-		Point prev = points.getPoints().at(i - 1);
+		Point current = points.getPoints()[i];
+		Point prev = points.getPoints()[i - 1];
 		double d = current.calculateDistance(prev);
 		if ((D + d) >= interval)
 		{
-			int tmp = ((interval - D) / d);
+			double tmp = ((interval - D) / d);
 			int qx = prev.x + (int)(tmp * (current.x - prev.x));
 			int qy = prev.y + (int)(tmp * (current.y - prev.y));
 
-			newPoints.append(newPoints, Point(qx, qy));
+			newPoints.append(Point(qx, qy));
 			newPoints.getPoints().insert(points.getPoints().begin() + i,
 				Point(qx, qy));
 			D = 0.0;
-		}
+	}	
 		else D += d;
 	}
 
 	if (newPoints.getPoints().size() == (n - 1))
-		newPoints.append(newPoints, points.getPoints().back());
+		newPoints.append(points.getPoints().back());
 
 	return newPoints;
 }

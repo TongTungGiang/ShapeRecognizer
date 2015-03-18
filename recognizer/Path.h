@@ -30,7 +30,7 @@ namespace recognizer
 
 		Path resample(Path points, int n);
 
-		void append(Path points, Point newPoint);
+		void append(/*Path &points, */Point newPoint);
 		Point calculateCentroid(Path points);
 		Rectangle calculateBoundingBox(Path points);
 		double pathLength(Path points);
