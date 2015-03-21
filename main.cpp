@@ -6,15 +6,14 @@
 //
 #include <iostream>
 
-#include "recognizer\Recognizer.h"
+#include "DollarRecognizer\GeometricRecognizer.h"
 
 int main()
 {
-	recognizer::Recognizer rec;
-	recognizer::SampleGestures samp;
+	DollarRecognizer::SampleGestures samp;
+	DollarRecognizer::GeometricRecognizer rec;
 
-	rec.setCandidate(samp.getGestureDiamond());
-	std::cout << rec.recognize().name;
+	std::cout << rec.recognize(samp.getGestureDiamond()).name << std::endl;
 
 	return 0;
 }
