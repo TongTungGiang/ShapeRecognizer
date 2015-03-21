@@ -1,2 +1,1 @@
-﻿  Path.cpp
-LINK : fatal error LNK1104: cannot open file 'D:\HUST\20142\Project II\ShapeRecognizer\Debug\ShapeRecognizer.ilk'
+﻿  ShapeRecognizer.vcxproj -> D:\HUST\20142\Project II\ShapeRecognizer\Debug\ShapeRecognizer.exe

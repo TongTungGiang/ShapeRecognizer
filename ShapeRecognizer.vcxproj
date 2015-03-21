@@ -10,44 +10,8 @@
       <Platform>Win32</Platform>
     </ProjectConfiguration>
   </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="recognizer\Recognizer.cpp" />
-    <ClCompile Include="recognizer\Path.cpp" />
-    <ClCompile Include="recognizer\Point.cpp" />
-    <ClCompile Include="recognizer\Rectangle.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="recognizer\Recognizer.h" />
-    <ClInclude Include="recognizer\Path.h" />
-    <ClInclude Include="recognizer\Point.h" />
-    <ClInclude Include="recognizer\Rectangle.h" />
-    <ClInclude Include="recognizer\SampleGestures.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Debug\ShapeRecognizer.exe" />
-    <None Include="Debug\ShapeRecognizer.ilk" />
-    <None Include="Debug\ShapeRecognizer.pdb" />
-    <None Include="Debug\ShapeRecognizer.tlog\cl.command.1.tlog" />
-    <None Include="Debug\ShapeRecognizer.tlog\CL.read.1.tlog" />
-    <None Include="Debug\ShapeRecognizer.tlog\CL.write.1.tlog" />
-    <None Include="Debug\ShapeRecognizer.tlog\ShapeRecognizer.lastbuildstate" />
-    <None Include="Debug\ShapeRecognizer.tlog\unsuccessfulbuild" />
-    <None Include="Debug\vc120.idb" />
-    <None Include="Debug\vc120.pdb" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Debug\ShapeRecognizer.log" />
-  </ItemGroup>
-  <ItemGroup>
-    <Object Include="Debug\main.obj" />
-    <Object Include="Debug\Path.obj" />
-    <Object Include="Debug\Point.obj" />
-    <Object Include="Debug\Recognizer.obj" />
-    <Object Include="Debug\Rectangle.obj" />
-  </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectGuid>{331DE4A0-4E91-493A-8CEE-1612D7FC650B}</ProjectGuid>
+    <ProjectGuid>{BE4F4ED5-80F0-408B-9166-ABE391542494}</ProjectGuid>
     <Keyword>Win32Proj</Keyword>
     <RootNamespace>ShapeRecognizer</RootNamespace>
   </PropertyGroup>
@@ -113,6 +77,16 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="DollarRecognizer\GeometricRecognizer.cpp" />
+    <ClCompile Include="main.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="DollarRecognizer\GeometricRecognizer.h" />
+    <ClInclude Include="DollarRecognizer\GeometricRecognizerTypes.h" />
+    <ClInclude Include="DollarRecognizer\GestureTemplate.h" />
+    <ClInclude Include="DollarRecognizer\SampleGestures.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>

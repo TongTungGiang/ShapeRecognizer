@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.30723.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShapeRecognizer", "ShapeRecognizer.vcxproj", "{331DE4A0-4E91-493A-8CEE-1612D7FC650B}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "ShapeRecognizer", "ShapeRecognizer.vcxproj", "{BE4F4ED5-80F0-408B-9166-ABE391542494}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,10 +11,10 @@ Global
 		Release|Win32 = Release|Win32
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{331DE4A0-4E91-493A-8CEE-1612D7FC650B}.Debug|Win32.ActiveCfg = Debug|Win32
-		{331DE4A0-4E91-493A-8CEE-1612D7FC650B}.Debug|Win32.Build.0 = Debug|Win32
-		{331DE4A0-4E91-493A-8CEE-1612D7FC650B}.Release|Win32.ActiveCfg = Release|Win32
-		{331DE4A0-4E91-493A-8CEE-1612D7FC650B}.Release|Win32.Build.0 = Release|Win32
+		{BE4F4ED5-80F0-408B-9166-ABE391542494}.Debug|Win32.ActiveCfg = Debug|Win32
+		{BE4F4ED5-80F0-408B-9166-ABE391542494}.Debug|Win32.Build.0 = Debug|Win32
+		{BE4F4ED5-80F0-408B-9166-ABE391542494}.Release|Win32.ActiveCfg = Release|Win32
+		{BE4F4ED5-80F0-408B-9166-ABE391542494}.Release|Win32.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
