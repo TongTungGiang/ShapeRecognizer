@@ -1,5 +1,11 @@
-#ifndef _GeometricRecognizerTypesIncluded_
-#define _GeometricRecognizerTypesIncluded_
+//------------------------------------------------------------------------------------------
+//
+//  GeometricRecognizerTypes.h
+//
+//  Created by Tong Tung Giang in 2015
+//
+#ifndef GEOMETRICRECOGNIZERTYPES_H
+#define GEOMETRICRECOGNIZERTYPES_H
 
 /*
 * This code taken (and modified) from the javascript version of:
@@ -37,8 +43,6 @@ namespace DollarRecognizer
 	class Point2D
 	{
 	public:
-		//--- Wobbrock used doubles for these, not ints
-		//int x, y;
 		double x, y;
 		Point2D() 
 		{
@@ -52,6 +56,7 @@ namespace DollarRecognizer
 		}
 	};
 
+	typedef Point2D Vector2i;
 	typedef vector<Point2D>  Path2D;
 	typedef Path2D::iterator Path2DIterator;
 
@@ -80,4 +85,5 @@ namespace DollarRecognizer
 		}
 	};
 }
+
 #endif

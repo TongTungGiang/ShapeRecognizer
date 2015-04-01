@@ -1,5 +1,11 @@
-#ifndef _GestureTemplateIncluded_
-#define _GestureTemplateIncluded_
+//------------------------------------------------------------------------------------------
+//
+//  GestureTemplate.h
+//
+//  Created by Tong Tung Giang in 2015
+//
+#ifndef GESTURETEMPLATE_H
+#define GESTURETEMPLATE_H
 
 #include <string>
 

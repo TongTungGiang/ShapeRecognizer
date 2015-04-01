@@ -1,82 +1,86 @@
+//------------------------------------------------------------------------------------------
+//
+//  GeometricRecognizer.cpp
+//
+//  Created by Tong Tung Giang in 2015
+//
+
 #include "GeometricRecognizer.h"
+#include <dirent.h>  // For reading files in a directory, using dirent-1.20.1
+#include <fstream>
+#include <string.h>
 
 #define min(a, b) (a < b) ? a : b
 
 namespace DollarRecognizer
 {
-	GeometricRecognizer::GeometricRecognizer()
+	GeometricRecognizer::GeometricRecognizer(std::string path)
 	{
-		//--- How many templates do we have to compare the user's gesture against?
-		//--- Can get ~97% accuracy with just one template per symbol to recognize
-		//numTemplates = 16;
-		//--- How many points do we use to represent a gesture
-		//--- Best results between 32-256
 		numPointsInGesture = 128;
-		//--- Before matching, we stretch the symbol across a square
-		//--- That way we don't have to worry about the symbol the user drew
-		//---  being smaller or larger than the one in the template
 		squareSize = 250;
-		//--- 1/2 max distance across a square, which is the maximum distance
-		//---  a point can be from the center of the gesture
 		halfDiagonal = 0.5 * sqrt((250.0 * 250.0) + (250.0 * 250.0));
-		//--- Before matching, we rotate the symbol the user drew so that the 
-		//---  start point is at degree 0 (right side of symbol). That's how 
-		//---  the templates are rotated so it makes matching easier
-		//--- Note: this assumes we want symbols to be rotation-invariant, 
-		//---  which we might not want. Using this, we can't tell the difference
-		//---  between squares and diamonds (which is just a rotated square)
 		setRotationInvariance(false);
 		anglePrecision = 2.0;
-		//--- A magic number used in pre-processing the symbols
 		goldenRatio    = 0.5 * (-1.0 + sqrt(5.0));
 
-		loadTemplates();
+		loadTemplates(path);
 	}
 
-	void GeometricRecognizer::loadTemplates()
+	void GeometricRecognizer::loadTemplates(std::string path)
 	{
-		SampleGestures samples;
-
-		addTemplate("Arrow", samples.getGestureArrow());
-		addTemplate("Caret", samples.getGestureCaret());
-		addTemplate("CheckMark", samples.getGestureCheckMark());
-		addTemplate("Circle", samples.getGestureCircle());
-		addTemplate("Delete", samples.getGestureDelete());
-		addTemplate("Diamond", samples.getGestureDiamond());
-		//addTemplate("LeftCurlyBrace", samples.getGestureLeftCurlyBrace());
-		addTemplate("LeftSquareBracket", samples.getGestureLeftSquareBracket());
-		addTemplate("LeftToRightLine", samples.getGestureLeftToRightLine());
-		addTemplate("LineDownDiagonal", samples.getGestureLineDownDiagonal());
-		addTemplate("Pigtail", samples.getGesturePigtail());
-		addTemplate("QuestionMark", samples.getGestureQuestionMark());
-		addTemplate("Rectangle", samples.getGestureRectangle());
-		//addTemplate("RightCurlyBrace", samples.getGestureRightCurlyBrace());
-		addTemplate("RightSquareBracket", samples.getGestureRightSquareBracket());
-		addTemplate("RightToLeftLine", samples.getGestureRightToLeftLine());
-		addTemplate("RightToLeftLine2", samples.getGestureRightToLeftLine2());
-		addTemplate("RightToLeftSlashDown", samples.getGestureRightToLeftSlashDown());
-		addTemplate("Spiral", samples.getGestureSpiral());
-		addTemplate("Star", samples.getGestureStar());
-		addTemplate("Triangle", samples.getGestureTriangle());
-		addTemplate("V", samples.getGestureV());
-		addTemplate("X", samples.getGestureX());
+		DIR *dir;
+		struct dirent *ent;
+		if ((dir = opendir(path.c_str())) != NULL)
+		{
+			while ((ent = readdir(dir)) != NULL)
+			{
+				if (strcmp(ent->d_name, ".") != 0 && strcmp(ent->d_name, "..") != 0)
+				{
+					std::string fileName = TEMPLATE_PATH;
+					fileName = fileName + ent->d_name;
+					addTemplate(fileName.c_str());
+				}
+			}
+			closedir(dir);
+		}
+		else
+		{
+			printf("Could not open the directory %s\n", path.c_str());
+			exit(EXIT_FAILURE);
+		}
 	}
 
-	int GeometricRecognizer::addTemplate(string name, Path2D points)
+	void GeometricRecognizer::addTemplate(const char* fileName)
+	{
+		Path2D points;
+		double x, y;
+		std::string name = "";
+
+		points.clear();
+
+		ifstream ifs(fileName);
+
+		if (!ifs)
+		{
+			std::cout << "Cannot open file " << fileName << std::endl;
+			return;
+		}
+
+		ifs >> name;
+		while (ifs >> x >> y)
+		{
+			points.push_back(Point2D(x, y));
+			//std::cout << x << ", " << y << std::endl;
+		}
+
+		templates.push_back(GestureTemplate(name, points));
+	}
+
+	void GeometricRecognizer::addTemplate(string name, Path2D points)
 	{
 		points = normalizePath(points);
 
 		templates.push_back(GestureTemplate(name, points));
-
-		//--- Let them know how many examples of this template we have now
-		int numInstancesOfGesture = 0;
-		// You know, i don't care so i'm just going to ignore this
-		//for (var i = 0; i < templates.size(); i++)
-		//{
-		//	if (templates[i].Name == name)
-		//		numInstancesOfGesture++;
-		//}
-		return numInstancesOfGesture;
 	}
 
 	Rectangle GeometricRecognizer::boundingBox(Path2D points)
@@ -171,21 +175,10 @@ namespace DollarRecognizer
 			Step 3: Scale and Translate
 			Step 4: Find the Optimal Angle for the Best Score
 		*/
-		// TODO: Switch to $N algorithm so can handle 1D shapes
-
-		//--- Make everyone have the same number of points (anchor points)
 		points = resample(points);
-		//--- Pretend that all gestures began moving from right hand side
-		//---  (degree 0). Makes matching two items easier if they're
-		//---  rotated the same
 		if (getRotationInvariance())
 			points = rotateToZero(points);
-		//--- Pretend all shapes are the same size. 
-		//--- Note that since this is a square, our new shape probably
-		//---  won't be the same aspect ratio
 		points = scaleToSquare(points);
-		//--- Move the shape until its center is at 0,0 so that everyone
-		//---  is in the same coordinate system
 		points = translateToOrigin(points);
 
 		return points;
@@ -193,8 +186,6 @@ namespace DollarRecognizer
 
 	double GeometricRecognizer::pathDistance(Path2D pts1, Path2D pts2)
 	{
-		// assumes pts1.size == pts2.size
-
 		double distance = 0.0;
 		for (int i = 0; i < (int)pts1.size(); i++) 
 			distance += getDistance(pts1[i], pts2[i]);
@@ -211,8 +202,6 @@ namespace DollarRecognizer
 
 	RecognitionResult GeometricRecognizer::recognize(Path2D points)
 	{
-		//--- Make sure we have some templates to compare this to
-		//---  or else recognition will be impossible
 		if (templates.empty())
 		{
 			std::cout << "No templates loaded so no symbols to match." << std::endl;
@@ -221,19 +210,11 @@ namespace DollarRecognizer
 
 		points = normalizePath(points);
 	
-		//--- Initialize best distance to the largest possible number
-		//--- That way everything will be better than that
 		double bestDistance = DBL_MAX;
-		//--- We haven't found a good match yet
 		int indexOfBestMatch = -1;
 
-		//--- Check the shape passed in against every shape in our database
 		for (int i = 0; i < (int)templates.size(); i++)
 		{
-			//--- Calculate the total distance of each point in the passed in
-			//---  shape against the corresponding point in the template
-			//--- We'll rotate the shape a few degrees in each direction to
-			//---  see if that produces a better match
 			double distance = distanceAtBestAngle(points, templates[i]);
 			if (distance < bestDistance)
 			{
@@ -242,15 +223,8 @@ namespace DollarRecognizer
 			}
 		}
 
-		//--- Turn the distance into a percentage by dividing it by 
-		//---  half the maximum possible distance (across the diagonal 
-		//---  of the square we scaled everything too)
-		//--- Distance = hwo different they are
-		//--- Subtract that from 1 (100%) to get the similarity
 		double score = 1.0 - (bestDistance / halfDiagonal);
 
-		//--- Make sure we actually found a good match
-		//--- Sometimes we don't, like when the user doesn't draw enough points
 		if (-1 == indexOfBestMatch)
 		{
 			cout << "Couldn't find a good match." << endl;
@@ -267,7 +241,6 @@ namespace DollarRecognizer
 		double D = 0.0;
 		Path2D newPoints;
 
-		//--- Store first point since we'll never resample it out of existence
 		newPoints.push_back(points.front());
 	    for(int i = 1; i < (int)points.size(); i++)
 		{
@@ -286,7 +259,6 @@ namespace DollarRecognizer
 			else D += d;
 		}
 
-		// somtimes we fall a rounding-error short of adding the last point, so add it if so
 		if (newPoints.size() == (numPointsInGesture - 1))
 		{
 			newPoints.push_back(points.back());
@@ -298,8 +270,6 @@ namespace DollarRecognizer
 	Path2D GeometricRecognizer::rotateBy(Path2D points, double rotation) 
 	{
 		Point2D c     = centroid(points);
-		//--- can't name cos; creates compiler error since VC++ can't
-		//---  tell the difference between the variable and function
 		double cosine = cos(rotation);	
 		double sine   = sin(rotation);
 		
@@ -323,26 +293,19 @@ namespace DollarRecognizer
 
 	Path2D GeometricRecognizer::scaleToSquare(Path2D points)
 	{
-		//--- Figure out the smallest box that can contain the path
 		DollarRecognizer::Rectangle box = boundingBox(points);
 		Path2D newPoints;
 		for (Path2DIterator i = points.begin(); i != points.end(); i++)
 		{
 			Point2D point = *i;
-			//--- Scale the points to fit the main box
-			//--- So if we wanted everything 100x100 and this was 50x50,
-			//---  we'd multiply every point by 2
 			double scaledX = point.x * (this->squareSize / box.width);
 			double scaledY = point.y * (this->squareSize / box.height);
-			//--- Why are we adding them to a new list rather than 
-			//---  just scaling them in-place?
-			// TODO: try scaling in place (once you know this way works)
 			newPoints.push_back(Point2D(scaledX, scaledY));
 		}
 		return newPoints;
 	}
 
-	void   GeometricRecognizer::setRotationInvariance(bool ignoreRotation)
+	void GeometricRecognizer::setRotationInvariance(bool ignoreRotation)
 	{
 		shouldIgnoreRotation = ignoreRotation;
 
@@ -356,15 +319,6 @@ namespace DollarRecognizer
 		}
 	}
 
-	/**
-	 * Shift the points so that the center is at 0,0.
-	 * That way, if everyone centers at the same place, we can measure
-	 *  the distance between each pair of points without worrying about
-	 *  where each point was originally drawn
-	 * If we didn't do this, shapes drawn at the top of the screen
-	 *  would have a hard time matching shapes drawn at the bottom
-	 *  of the screen
-	 */
 	Path2D GeometricRecognizer::translateToOrigin(Path2D points)
 	{
 		Point2D c = centroid(points);

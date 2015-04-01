@@ -1,1 +1,50 @@
-﻿  ShapeRecognizer.vcxproj -> D:\HUST\20142\Project II\ShapeRecognizer\Debug\ShapeRecognizer.exe
+﻿  main.cpp
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(58): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(59): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(60): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(61): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(62): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(63): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(75): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(76): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbuttonmanager.h(32): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\framework\commandbuttonmanager.h(103): warning C4018: '<' : signed/unsigned mismatch
+  TemplateCapturingState.cpp
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(58): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(59): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(60): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(61): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(62): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(63): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(75): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(76): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbuttonmanager.h(32): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\framework\commandbuttonmanager.h(103): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(94): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(104): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(114): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(187): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(190): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(195): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\states\templatecapturingstate.cpp(196): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+  RecognizingState.cpp
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(58): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(59): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(60): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(61): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(62): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(63): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(75): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbutton.h(76): warning C4244: 'initializing' : conversion from 'double' to 'int', possible loss of data
+d:\hust\20142\project ii\shaperecognizer\framework\commandbuttonmanager.h(32): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\framework\commandbuttonmanager.h(103): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\recognizingstate.cpp(111): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\recognizingstate.cpp(128): warning C4018: '<' : signed/unsigned mismatch
+d:\hust\20142\project ii\shaperecognizer\states\recognizingstate.cpp(131): warning C4244: 'argument' : conversion from 'double' to 'int', possible loss of data
+  Generating Code...
+  Compiling...
+  GeometricRecognizer.cpp
+d:\hust\20142\project ii\shaperecognizer\dollarrecognizer\geometricrecognizer.cpp(13): warning C4005: 'min' : macro redefinition
+          c:\program files (x86)\windows kits\8.1\include\shared\minwindef.h(197) : see previous definition of 'min'
+  Generating Code...
+  ShapeRecognizer.vcxproj -> D:\HUST\20142\Project II\ShapeRecognizer\Debug\ShapeRecognizer.exe

@@ -1,11 +1,18 @@
-#ifndef _GeometricRecognizerIncluded_
-#define _GeometricRecognizerIncluded_
+//------------------------------------------------------------------------------------------
+//
+//  GeometricRecognizer.h
+//
+//  Created by Tong Tung Giang in 2015
+//
+#ifndef GEOMETRICRECOGNIZER_H
+#define GEOMETRICRECOGNIZER_H
+
+#define TEMPLATE_PATH "resources/templates/"
 
 #include <limits>
 #include <iostream>
 #include "GeometricRecognizerTypes.h"
 #include "GestureTemplate.h"
-#include "SampleGestures.h"
 
 using namespace std;
 
@@ -13,28 +20,25 @@ namespace DollarRecognizer
 {
 	class GeometricRecognizer
 	{
-	protected:
-		//--- These are variables because C++ doesn't (easily) allow
-		//---  constants to be floating point numbers
+	private:
+
 		double halfDiagonal;
 		double angleRange;
 		double anglePrecision;
 		double goldenRatio;
 
-		//--- How many points we use to define a shape
 		int numPointsInGesture;
-		//---- Square we resize the shapes to
 		int squareSize;
 		
 		bool shouldIgnoreRotation;
-
-		//--- What we match the input shape against
 		GestureTemplates templates;
 
 	public:
-		GeometricRecognizer();
+		GeometricRecognizer(std::string path);
 
-		int addTemplate(string name, Path2D points);
+		void addTemplate(string name, Path2D points);
+		void addTemplate(const char* fileName);
+
 		DollarRecognizer::Rectangle boundingBox(Path2D points);
 		Point2D centroid(Path2D points);
 		double getDistance(Point2D p1, Point2D p2);
@@ -54,6 +58,8 @@ namespace DollarRecognizer
 		Path2D translateToOrigin(Path2D points);
 
 		void loadTemplates();
+		void loadTemplates(std::string path);
 	};
 }
+
 #endif
