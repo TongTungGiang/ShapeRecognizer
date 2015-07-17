@@ -21,6 +21,8 @@ private:
 	DollarRecognizer::Path2D points;
 	std::string templateName;
 
+	void normalizeString(std::string *s);
+
 public:
 
 	TemplateCapturingState();

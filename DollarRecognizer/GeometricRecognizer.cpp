@@ -54,7 +54,7 @@ namespace DollarRecognizer
 	{
 		Path2D points;
 		double x, y;
-		std::string name = "";
+		char name[100];
 
 		points.clear();
 
@@ -66,11 +66,10 @@ namespace DollarRecognizer
 			return;
 		}
 
-		ifs >> name;
+		ifs.getline(name, 100);
 		while (ifs >> x >> y)
 		{
 			points.push_back(Point2D(x, y));
-			//std::cout << x << ", " << y << std::endl;
 		}
 
 		templates.push_back(GestureTemplate(name, points));

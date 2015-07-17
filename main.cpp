@@ -16,8 +16,6 @@ int main(int argc, char * argv[])
 {
 	ShowWindow(GetConsoleWindow(), SW_HIDE);
 
-	//TemplateCapturingState *state = new TemplateCapturingState();
-	//RecognizingState *state = new RecognizingState();
 	Framework::GameStateManager *man = new Framework::GameStateManager();
 
 	Framework::fw_frameworkInitialize();
@@ -30,7 +28,6 @@ int main(int argc, char * argv[])
 	loadTextures();
 	loadFonts();
 
-	//state->mainLoop();
 	man->run();
 
 	Framework::fw_frameworkTerminate();
@@ -63,6 +60,13 @@ void loadTextures()
 	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/MenuAboutActive.png");
 	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/MenuExit.png");
 	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/MenuExitActive.png");
+
+	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/next.png");
+	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/nextActive.png");
+	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/prev.png");
+	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/prevActive.png");
+
+	Framework::TextureManager::instance()->fwtm_createTextureFromFile("resources/images/CreditBackground.png");
 }
 
 void loadFonts()

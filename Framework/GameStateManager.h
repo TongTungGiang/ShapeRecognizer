@@ -7,10 +7,12 @@
 #ifndef GAME_STATE_MANAGER_H
 #define GAME_STATE_MANAGER_H
 
-#include "GameState.h"
 #include "..\States\RecognizingState.h"
 #include "..\States\TemplateCapturingState.h"
 #include "..\States\MenuState.h"
+#include "..\States\ViewTemplatesState.h"
+#include "..\States\CreditState.h"
+
 #include <vector>
 
 namespace Framework
@@ -77,6 +79,10 @@ namespace Framework
 					changeState(new TemplateCapturingState()); break;
 				case MENU_STATE:
 					changeState(new MenuState()); break;
+				case VIEW_TEMPLATE_STATE:
+					changeState(new ViewTemplatesState()); break;
+				case CREDIT_STATE:
+					changeState(new CreditState()); break;
 				case QUIT_STATE:
 					popState(); break;
 				default:

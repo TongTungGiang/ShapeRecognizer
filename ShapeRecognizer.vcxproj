@@ -80,6 +80,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="States\CreditState.cpp" />
     <ClCompile Include="DollarRecognizer\GeometricRecognizer.cpp" />
     <ClCompile Include="Framework\FontLibrary.cpp" />
     <ClCompile Include="Framework\InputHandler.cpp" />
@@ -91,8 +92,10 @@
     <ClCompile Include="States\MenuState.cpp" />
     <ClCompile Include="States\RecognizingState.cpp" />
     <ClCompile Include="States\TemplateCapturingState.cpp" />
+    <ClCompile Include="States\ViewTemplatesState.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="States\CreditState.h" />
     <ClInclude Include="DollarRecognizer\GeometricRecognizer.h" />
     <ClInclude Include="DollarRecognizer\GeometricRecognizerTypes.h" />
     <ClInclude Include="DollarRecognizer\GestureTemplate.h" />
@@ -110,6 +113,7 @@
     <ClInclude Include="States\MenuState.h" />
     <ClInclude Include="States\RecognizingState.h" />
     <ClInclude Include="States\TemplateCapturingState.h" />
+    <ClInclude Include="States\ViewTemplatesState.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -37,7 +37,12 @@ enum button_textures
 	MENU2, MENU2_ACTIVE,  // Add a template
 	MENU3, MENU3_ACTIVE,  // View templates
 	MENU4, MENU4_ACTIVE,  // About
-	MENU5, MENU5_ACTIVE   // Exit
+	MENU5, MENU5_ACTIVE,   // Exit
+
+	NEXT_BUTTON, NEXT_BUTTON_ACTIVE,
+	PREV_BUTTON, PREV_BUTTON_ACTIVE,
+
+	CREDIT
 };
 
 namespace Framework

@@ -85,6 +85,8 @@ void TemplateCapturingState::buttonSaveClicked()
 	if (templateName == "")
 		return;
 
+	normalizeString(&templateName);
+
 	// Save the template
 	std::string path = "resources/templates/" + templateName + ".txt";
 	std::ofstream ofs(path);
@@ -95,7 +97,6 @@ void TemplateCapturingState::buttonSaveClicked()
 	{
 		ofs << std::fixed << std::setprecision(2) << temp[i].x << " " << temp[i].y << std::endl;
 	}
-	std::cout << "Template : " << path << " saved." << std::endl;
 
 	// Save the template - mirrored via X axis
 	path = "resources/templates/" + templateName + "_mirX.txt";
@@ -105,7 +106,6 @@ void TemplateCapturingState::buttonSaveClicked()
 	{
 		ofs << std::fixed << std::setprecision(2) << temp[i].x << " " << -temp[i].y << std::endl;
 	}
-	std::cout << "Template : " << path << " saved." << std::endl;
 
 	// Save the template - mirrored via Y axis
 	path = "resources/templates/" + templateName + "_mirY.txt";
@@ -115,12 +115,11 @@ void TemplateCapturingState::buttonSaveClicked()
 	{
 		ofs << std::fixed << std::setprecision(2) << -temp[i].x << " " << temp[i].y << std::endl;
 	}
-	std::cout << "Template : " << path << " saved." << std::endl;
 }
 
 void TemplateCapturingState::textboxClicked()
 {
-	Framework::InputHandler::instance()->fwi_startStringCapture("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_");
+	Framework::InputHandler::instance()->fwi_startStringCapture("abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789-_ ");
 	Framework::InputHandler::instance()->fwi_setCapturedString(&templateName, 16);
 }
 
@@ -196,4 +195,24 @@ void TemplateCapturingState::render()
 
 	Framework::FontLibrary::instance()->fwf_renderText(templateName.c_str(),
 		"Arial20", { 0, 0, 0, 255 }, x + 10, y + 15);
+}
+
+void TemplateCapturingState::normalizeString(std::string *s)
+{
+	while (s->at(0) == ' ')
+		s->erase(0, 1);
+
+	while (s->at(s->length() - 1) == ' ')
+		s->erase(s->length() - 1, 1);
+
+	s->at(0) = toupper(s->at(0));
+	for (int i = 1; i < s->length() - 1; i++)
+	{
+		if (s->at(i) == ' ')
+		{
+			while (s->at(i + 1) == ' ')
+				s->erase(i, 1);
+			s->at(i + 1) = toupper(s->at(i + 1));
+		}
+	}
 }

@@ -95,13 +95,13 @@ void MenuState::goToTemplateCapturing()
 void MenuState::goToViewTemplates()
 {
 	isOnState = false;
-	setNextState(QUIT_STATE);
+	setNextState(VIEW_TEMPLATE_STATE);
 }
 
 void MenuState::goToAbout()
 {
 	isOnState = false;
-	setNextState(QUIT_STATE);
+	setNextState(CREDIT_STATE);
 }
 
 void MenuState::goToExit()
